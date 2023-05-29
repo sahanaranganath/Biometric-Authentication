@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Biometric Authentication</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <style>
+      body {
+        background-image: url('https://img.freepik.com/premium-vector/cyber-security-concept_23-2148533308.jpg');
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+        color: #ffffff;
+        
+      }
+      /* .container{
+          padding: 5% 10%;
+      }*/
+      #content1, #content2{
+        background-color: rgba(0, 0, 0, 0.80);
+        height: 80vh;
+        padding: 25px 50px;
+        margin-top: 100px;
+      }
+      /*.row{
+        display: flex;
+        padding-left: 2%;
+        padding-right: 2%;
+      }
+      .column{
+        width: 30%;
+        margin: 1%;
+      }
+      input[type=submit], input[type=file]{
+        width: 50%;
+        border:1px solid #ffffff;
+        color: white;
+        background-color: transparent;
+        padding:14px 0;
+        margin: 8px;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+      }
+      input[type=submit]{
+        border:1px solid #ffffff;
+      }
+      input[type=submit]:hover{
+        background-color: #ffffff;
+        color: black;
+      }*/
+      h3, h1{
+        
+        text-align: center;
+      } 
+    </style>
+</head>
+<!-- <body style="background-image: url('static/leaf.jpeg');"> -->
+  <body>
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <a class="navbar-brand">Authentication</a>
+        </div>
+        <ul class="nav navbar-nav navbar-right">
+          <li><a href="#content1">Encryption</a></li>
+          <li><a href="#content2">Decryption</a></li>
+        </ul>
+      </div>
+    </nav>
+    <div class="container">
+    <div id="content1">
+  <!-- <center> -->
+  <h1>ENCRYPTION PROCESS</h1>
+  <!-- <hr> -->
+  <div class="row">
+    <div class="col-lg-4">
+      {% if result1 %}
+        <h3>OTP verification</h3>
+        <hr>
+          <form action="{{url_for('verify1')}}" method="POST">          
+            <label for="">OTP</label><br>
+            <input type="number" id="otp1" class="form-control" placeholder="Enter otp" name="otp1" required>
+            <input type="number" id="otp2" value="{{otp2}}" class="form-control" name="otp2" required style="display: none;">
+            <input type="text" id="filename1" value="{{result1}}" class="form-control" name="filename1" required style="display: none;"> <br>
+            <input type="submit" class="btn btn-success" value="Verify">
+          </form>
+        {% else %}
+      <h3>Select Image</h3>
+      <hr>
+        <form action="{{url_for('encrypt')}}" method="POST">          
+          <label for="">select original image</label><br>
+            <input type="file" id="file" class="form-control" name="filename1" required> <br>
+            <label for="">select iris image</label><br>
+            <input type="file" id="file" class="form-control" name="filename2" required> <br>
+            <label for="">select fingerprint image</label><br>
+            <input type="file" id="file" class="form-control" name="filename3" required> <br>
+            <input type="submit" class="btn btn-success" value="Encrypt">
+        </form>
+    </div>
+    <div class="col-lg-4">
+      <h3>Original Image</h3>
+      <hr>
+      {% if (ImageDisplay1) %}
+      <img src="{{ImageDisplay1}}" style="width: 100%;">
+      {% endif %}
+    </div>
+    <div class="col-lg-4">
+      <h3>Encrypted Image</h3>
+      <hr>
+      {% if (ImageDisplay2) %}
+      <img src="{{ImageDisplay2}}" style="width: 100%;">
+      {% endif %}
+    </div>
+    {% endif %}
+    </div>
+   </div>
+
+
+   <div id="content2">
+    <!-- <center> -->
+    <h1>DECRYPTION PROCESS</h1>
+    <!-- <hr> -->
+    <div class="row">
+      <div class="col-lg-4">
+        {% if result %}
+        <h3>OTP verification</h3>
+        <hr>
+          <form action="{{url_for('verify')}}" method="POST">          
+            <label for="">Please enter the OTP</label><br>
+            <input type="number" id="otp1" class="form-control" placeholder="Enter otp" name="otp1" required>
+            <input type="number" id="otp2" value="{{otp2}}" class="form-control" name="otp2" required style="display: none;">
+            <input type="text" id="filename1" value="{{result}}" class="form-control" name="filename1" required style="display: none;"> <br>
+            <input type="submit" class="btn btn-success" value="Verify">
+          </form>
+        {% else %}
+        <h3>Select Image</h3>
+        <hr>
+          <form action="{{url_for('decrypt')}}" method="POST">          
+            <label for="">select encrypted image</label><br>
+            <input type="file" id="file" class="form-control" name="filename1" required> <br>
+            <label for="">select iris image</label><br>
+            <input type="file" id="file" class="form-control" name="filename2" required> <br>
+            <label for="">select fingerprint image</label><br>
+            <input type="file" id="file" class="form-control" name="filename3" required> <br>
+            <input type="submit" class="btn btn-success" value="Decrypt">
+          </form>
+          {% endif %}
+      </div>
+      <div class="col-lg-4">
+        <h3>Encrypted Image</h3>
+        
+        <hr>
+        {% if (Image1) %}
+        <img src="{{Image1}}" style="width: 100%;">
+        {% endif %}
+      </div>
+      <div class="col-lg-4">
+        <h3>Original Image</h3>
+        <hr>
+        {% if (Image2) %}
+        <img src="{{Image2}}" style="width: 100%;">
+        {% endif %}
+      </div>
+      </div>
+     </div>
+
+
+   </div>
+
+   <script>
+   $(document).ready(function() {
+        {% if (Image1) %}
+            $('html, body').animate({
+                scrollTop: $("#content2").offset().top
+            }, 1000);
+        {% endif %}
+   
+        {% if msg %}
+        console.log("{{msg}}");
+          alert("{{msg}}");
+        {% endif %}
+        
+});
+    
+</script>
+
+</body>
+</html>
