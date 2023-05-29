@@ -17,6 +17,8 @@ Decryption Process
 1) Daugman - Iris Detection
 2) Convolution Neural Network - Fingerprint Detection
 3) Rubix Cube Algorithm - Encryption and Decryption
+
+
 **CONCLUSION**
 In conclusion, the use of biometric authentication systems, particularly those that combine iris and fingerprint recognition, offers a promising solution for secure and convenient authentication. The iris and fingerprint biometric system provides high accuracy, fast authentication times, reliability, usability, and security. Additionally, the system has several functional requirements, such as enrolment, integration, flexibility, scalability, security, user interface, monitoring, and maintenance. 
 However, the potential for biometric data theft or breaches, and the need for standardization and interoperability. Nonetheless, the benefits of iris and fingerprint biometric authentication systems make them an attractive solution for various industries and applications, from healthcare to finance to law enforcement. As technology continues to evolve, the future of biometric authentication looks promising, and iris and fingerprint recognition systems will continue to play an essential role in securing our data and identity.
